@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investimento Real Colombo Futsal: Um Projeto Estratégico para o Paraná</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Poppins:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-background: #0d0d1a;
+            --color-text: #e8e8e8;
+            --color-primary: #ffd700;
+            --color-secondary: #00bfff;
+            --color-card: #1a1a2e;
+            --color-card-border: #30304a;
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Roboto', sans-serif;
+        }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--color-background);
+            color: var(--color-text);
+            font-family: var(--font-secondary);
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .pitch-container {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+            height: calc(var(--vh, 1vh) * 100);
+        }
+
+        .slide {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            height: calc(var(--vh, 1vh) * 100);
+            padding: 2rem clamp(1rem, 5vw, 5rem);
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid var(--color-card-border);
+            scroll-snap-align: start;
+            overflow-y: auto;
+        }
+        
+        .slide:last-child { border-bottom: none; }
+
+        .slide-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 1300px;
+            width: 100%;
+            animation: slideUp 1s ease-out;
+        }
+        
+        h1, h2, h3, h4 { font-family: var(--font-primary); font-weight: 700; color: #fff; text-wrap: balance; }
+        h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); text-shadow: 0 4px 15px rgba(0,0,0,0.8); }
+        h2 { font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 1rem; }
+        p { font-size: clamp(1rem, 1.5vw, 1.15rem); max-width: 900px; line-height: 1.7; font-weight: 300; margin: 1rem 0 1.5rem 0; text-align: justify; text-wrap: pretty; }
+        .accent { color: var(--color-primary); }
+        .accent-tech { color: var(--color-secondary); }
+
+        #hero { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(3).png') no-repeat center center; background-size: cover; }
+        #contact { background: linear-gradient(rgba(13, 13, 26, 0.8), rgba(13, 13, 26, 0.95)), url('https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(1).jpg') no-repeat center center; background-size: cover; }
+        .subtitle { text-align: center; font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 400; max-width: 700px; }
+
+        .card-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; width: 100%; margin-top: 2rem; }
+        .info-card { background: var(--color-card); padding: 2rem; border-radius: 20px; border: 1px solid var(--color-card-border); transition: transform 0.4s ease, box-shadow 0.4s ease; text-align: left; }
+        .info-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0, 191, 255, 0.2); }
+        .info-card .icon { font-size: 2.5rem; color: var(--color-primary); margin-bottom: 1rem; }
+        .info-card h3 { font-size: 1.4rem; color: #fff; margin-bottom: 0.5rem; }
+        .info-card p { font-size: 0.95rem; line-height: 1.6; max-width: 100%; margin: 0; text-align: left;}
+
+        .content-columns { display: flex; gap: 2rem; width: 100%; margin-top: 1rem; text-align: left; align-items: flex-start; }
+        .content-columns .column { flex: 1; min-width: 0; }
+        .content-columns h4 { font-size: clamp(1rem, 1.5vw, 1.2rem); margin-bottom: 0.5rem; border-bottom: 2px solid var(--color-primary); padding-bottom: 0.5rem;}
+        .victory-list { list-style: none; padding: 0; }
+        .victory-list li { background: rgba(255, 255, 255, 0.05); margin-bottom: 0.5rem; padding: 0.7rem; border-radius: 8px; border-left: 4px solid var(--color-card-border); font-weight: 400; font-size: clamp(0.8rem, 1.2vw, 0.9rem); }
+        .victory-list i { margin-right: 8px; color: var(--color-primary); }
+        
+        .infographic-container { width: 100%; max-width: 1000px; margin-top: 2rem; display: flex; flex-direction: column; gap: 2.5rem; }
+        .hegemony-bar-container h4 { text-align: center; color: var(--color-text); font-weight: 400; margin-bottom: 1rem; }
+        .hegemony-bar { display: flex; width: 100%; height: 40px; border-radius: 10px; overflow: hidden; background: #000; box-shadow: inset 0 2px 5px rgba(0,0,0,0.4); }
+        .bar-segment { height: 100%; transition: all 0.5s ease-out; position: relative; display: flex; align-items: center; justify-content: center; color: #000; font-weight: 700; cursor: help; }
+        .bar-segment:after { content: attr(data-label); position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; color: #fff; background: rgba(0,0,0,0.8); padding: 8px 12px; border-radius: 5px; white-space: nowrap; font-size: 0.9rem; z-index: 10; }
+        .bar-segment:hover:after { opacity: 1; visibility: visible; }
+        .bar-segment.gold { background-color: var(--color-primary); }
+        .bar-segment.silver { background-color: #c0c0c0; }
+        .bar-segment.bronze { background-color: #cd7f32; }
+        .impact-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .impact-card { background: var(--color-card); border-bottom: 4px solid var(--color-secondary); border-radius: 10px; padding: 1.5rem; text-align: center; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s; }
+        .impact-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0, 191, 255, 0.15); }
+        .impact-title { font-size: 1rem; font-weight: 300; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
+        .impact-number { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 700; color: #fff; margin: 0.5rem 0; }
+        .impact-number.accent { color: var(--color-primary); }
+        .impact-desc { font-size: 0.9rem; color: var(--color-secondary); }
+
+        /* --- GALERIA DE FOTOS E VÍDEOS --- */
+        #gallery .slide-content h2 { margin-bottom: 0.5rem; }
+        #gallery .slide-content p { text-align: center; margin-bottom: 1.5rem; }
+        #videos .slide-content p { text-align: center; }
+
+        .slideshow-container {
+            width: 100%; max-width: 800px; aspect-ratio: 16 / 9; position: relative;
+            background-color: #000; border-radius: 20px; overflow: hidden; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.7); margin-top: 1rem;
+        }
+        .gallery-slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0; transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            visibility: hidden;
+        }
+        .gallery-slide.active { opacity: 1; visibility: visible; }
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* CORREÇÃO APLICADA AQUI */
+        }
+
+        .gallery-nav {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 100%; display: flex; justify-content: space-between;
+            padding: 0 1rem; box-sizing: border-box; z-index: 5;
+        }
+        .gallery-arrow {
+            background: rgba(0,0,0,0.3); border: none; color: #fff;
+            width: 45px; height: 45px; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; transition: background-color 0.3s;
+        }
+        .gallery-arrow:hover { background: rgba(255, 215, 0, 0.8); color: #000; }
+
+        .video-container {
+            position: relative; width: 100%; overflow: hidden; padding-top: 56.25%;
+            border-radius: 15px; background-color: #000;
+        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .video-card h3 { margin-top: 1rem; font-size: clamp(1.1rem, 2vw, 1.3rem); }
+
+        /* --- NAVEGAÇÃO E SEÇÃO FINAL --- */
+        #final-word { background-color: #0d0d1a; border: none; }
+        .final-text { font-family: var(--font-primary); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; line-height: 1.4; text-transform: uppercase; }
+        .final-text span { display: block; }
+        .final-text .small { font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 400; margin-top: 2rem; color: var(--color-secondary); text-transform: none; max-width: 800px; }
+        
+        .navigation-arrows { position: fixed; right: 30px; top: 50%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 15px; }
+        .nav-arrow { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: all 0.3s; }
+        .nav-arrow:hover { background: var(--color-primary); color: #000; transform: scale(1.1); }
+        .nav-arrow.disabled { opacity: 0.3; cursor: not-allowed; pointer-events: none; }
+        
+        .main-cta-container { margin-bottom: 2rem; }
+        .contact-buttons-container { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; justify-content: center; }
+        .contact-button { display: inline-flex; align-items: center; gap: 10px; background: var(--color-primary); color: #000; padding: 0.8rem 1.8rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: clamp(0.9rem, 1.5vw, 1rem); transition: all 0.3s; }
+        .contact-button:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+        .contact-button.main-cta { background: var(--color-primary); color: #000; padding: 1rem 2.5rem; font-size: clamp(1.1rem, 2vw, 1.3rem); transform: scale(1.05); box-shadow: 0 5px 25px rgba(255, 215, 0, 0.3); }
+        .contact-button.main-cta:hover { box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5); transform: scale(1.1); }
+        .contact-button.whatsapp { background: #25D366; color: #fff; }
+        .contact-button.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+        
+        @media (max-width: 992px) { .content-columns { flex-direction: column; gap: 1rem; } }
+        @media (max-width: 768px) {
+            .slide { padding: 2rem 1.5rem; }
+            h1 { font-size: 2.2rem; } h2 { font-size: 1.8rem; }
+            p { font-size: 0.95rem; text-align: left; }
+            #gallery .slide-content p, #videos .slide-content p, .subtitle, #history-elite p, #history-base p, #proposal p, #roi p, #contact p { text-align: center; }
+            .card-container { grid-template-columns: 1fr; }
+            .navigation-arrows { right: 15px; }
+            .nav-arrow { width: 40px; height: 40px; font-size: 1.2rem; }
+            .contact-buttons-container { flex-direction: column; align-items: center; }
+            .slideshow-container { max-width: 100%; }
+            .gallery-arrow { width: 40px; height: 40px; font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="navigation-arrows">
+    <div id="arrow-up" class="nav-arrow disabled"><i class="fas fa-chevron-up"></i></div>
+    <div id="arrow-down" class="nav-arrow"><i class="fas fa-chevron-down"></i></div>
+</div>
+
+<div class="pitch-container" id="pitch-container">
+
+    <section class="slide" id="hero" data-index="0">
+        <div class="slide-content">
+            <h1>O Fim da Intuição.<br>O Início do <span class="accent">Domínio</span>.</h1>
+            <p class="subtitle">Não buscamos um patrocínio. Oferecemos uma parceria estratégica para construir o futuro da performance no futsal feminino.</p>
+        </div>
+    </section>
+
+    <section class="slide" id="pioneer" data-index="1">
+        <div class="slide-content">
+            <h2>Pioneirismo: A Revolução dos <span class="accent-tech">Dados</span> no Futsal Feminino</h2>
+            <p>Nossa visão é clara: ser a <strong>primeira equipe feminina de futsal do Brasil</strong> a implementar sistematicamente a ciência de dados e a tecnologia para otimizar a performance, ajustar táticas e maximizar o potencial de cada atleta. Estamos criando o futuro, hoje.</p>
+            <div class="card-container">
+                <div class="info-card"><div class="icon"><i class="fas fa-chart-pie"></i></div><h3>Análise Tática</h3><p>Uso de IA para identificar padrões, otimizar estratégias e explorar fraquezas adversárias com precisão cirúrgica.</p></div>
+                <div class="info-card"><div class="icon"><i class="fas fa-running"></i></div><h3>Performance Individual</h3><p>Monitoramento com GPS e sensores para controlar a carga de treino, prevenir lesões e elevar o nível físico de cada jogadora.</p></div>
+                <div class="info-card"><div class="icon"><i class="fas fa-brain"></i></div><h3>Tomada de Decisão</h3><p>Substituímos o "achismo" por dados concretos, permitindo que a comissão técnica tome as melhores decisões, baseadas em evidências.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide" id="stats-hegemony" data-index="2">
+        <div class="slide-content">
+            <h2>A Anatomia de um <span class="accent">Domínio</span> Absoluto</h2>
+            <p>Decodificamos nossa performance para revelar uma consistência de elite. Os dados não mentem: estamos em outro patamar.</p>
+            <div class="infographic-container">
+                <div class="hegemony-bar-container">
+                    <h4>Performance em 25 Campeonatos Disputados</h4>
+                    <div class="hegemony-bar"><div class="bar-segment gold" style="width: 64%;" data-label="Campeãs (16)"></div><div class="bar-segment silver" style="width: 24%;" data-label="Vice (6)"></div><div class="bar-segment bronze" style="width: 12%;" data-label="3º Lugar (3)"></div></div>
+                </div>
+                <div class="impact-cards-grid">
+                    <div class="impact-card"><span class="impact-title">Aproveitamento</span><span class="impact-number accent">100%</span><span class="impact-desc">Presença no pódio</span></div>
+                    <div class="impact-card"><span class="impact-title">Taxa de Títulos</span><span class="impact-number">64%</span><span class="impact-desc">Dos campeonatos disputados</span></div>
+                    <div class="impact-card"><span class="impact-title">Preparação</span><span class="impact-number">>50</span><span class="impact-desc">Amistosos de alto nível</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide" id="history-elite" data-index="3">
+        <div class="slide-content">
+            <h2>Conquistas de <span class="accent">Elite</span> e Destaque <span class="accent-tech">Internacional</span></h2>
+            <p>Resultados que nos colocam no cenário global e na elite do esporte nacional.</p>
+            <div class="content-columns">
+                <div class="column"><h4><i class="fas fa-trophy"></i> Títulos de Campeão</h4><ul class="victory-list"><li><b>Paranaense Série Prata 2024 (Invicto)</b> - Acesso à Série Ouro 2025</li><li><b>Bicampeão Sul Brasileiro (Sub-18)</b></li><li><b>Taça Brasil de Clubes 2022 (Sub 17)</b></li></ul></div>
+                <div class="column"><h4><i class="fas fa-medal"></i> Pódios de Destaque</h4><ul class="victory-list"><li><b>Vice-Campeão - Intercontinental Cup</b> (Argentina, 2025)</li><li><b>Vice-Campeão - Desafio Mundialista</b> (Argentina, Sub17, 2023)</li><li><b>Vice-campeão Brasileiro da Taça Brasil de Clubes</b> (Sub 17, 2025)</li></ul></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide" id="history-base" data-index="4">
+        <div class="slide-content">
+            <h2><span class="accent">Domínio</span> e Consistência na Base</h2>
+            <p>Nossa força se prova na formação, com hegemonia em múltiplas categorias (2023-2025).</p>
+            <div class="content-columns">
+                <div class="column"><h4><i class="fas fa-trophy"></i> 1º Lugar - Campeão</h4><ul class="victory-list"><li>Bicampeão Jogos da Juventude (JOJUPS) 2023</li><li>Copa Escolar Futsal (Sub 13 e 16)</li><li>Jogos Escolares Macro Regional (Sub 14 e 17)</li><li>Copa Escolar de FUT 7 (Sub 17)</li></ul></div>
+                <div class="column"><h4><i class="fas fa-medal"></i> 2º Lugar - Vice-Campeão</h4><ul class="victory-list"><li>Jogos Bom de Bola (Estadual Escolar, Sub 17)</li><li>Copa Escolar de FUT 7 (Sub 14)</li><li>Girl Power Futebol de Campo (Adulto)</li><li>Copa Escolar 2023 (Sub 13)</li></ul></div>
+                <div class="column"><h4><i class="fas fa-award"></i> 3º Lugar</h4><ul class="victory-list"><li>Jogos da Juventude 2024 (Sub 17)</li><li>Campeonato Paranaense (Sub 13 e Sub 15)</li><li>Campeonato Sul Brasileiro 2024 (Sub-16)</li></ul></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide" id="gallery" data-index="5">
+        <div class="slide-content">
+            <h2>O <span class="accent">Rosto</span> da Conquista</h2>
+            <p>Mais que atletas, formamos líderes. Cada imagem conta uma história de dedicação, união e superação.</p>
+            <div class="slideshow-container">
+                <div class="gallery-slide active"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(1).jpeg" alt="Foto da equipe 1"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(1).jpg" alt="Foto da equipe 2"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(1).png" alt="Foto da equipe 3"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(10).jpg" alt="Foto da equipe 4"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(11).jpg" alt="Foto da equipe 5"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(12).jpg" alt="Foto da equipe 6"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(15).jpg" alt="Foto da equipe 7"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(16).jpg" alt="Foto da equipe 8"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(17).jpg" alt="Foto da equipe 9"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(2).JPG" alt="Foto da equipe 10"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(2).jpeg" alt="Foto da equipe 11"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(21).JPG" alt="Foto da equipe 12"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(22).jpg" alt="Foto da equipe 13"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(23).jpg" alt="Foto da equipe 14"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(24).JPG" alt="Foto da equipe 15"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(25).jpg" alt="Foto da equipe 16"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(26).jpg" alt="Foto da equipe 17"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(27).jpg" alt="Foto da equipe 18"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(28).jpg" alt="Foto da equipe 19"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(29).jpg" alt="Foto da equipe 20"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(3).jpg" alt="Foto da equipe 21"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(3).png" alt="Foto da equipe 22"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(30).jpg" alt="Foto da equipe 23"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(31).jpg" alt="Foto da equipe 24"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(32).jpg" alt="Foto da equipe 25"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(33).jpg" alt="Foto da equipe 26"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(34).jpg" alt="Foto da equipe 27"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(35).jpg" alt="Foto da equipe 28"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(36).jpg" alt="Foto da equipe 29"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(37).jpg" alt="Foto da equipe 30"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(4).JPG" alt="Foto da equipe 31"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(4).jpeg" alt="Foto da equipe 32"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(5).JPG" alt="Foto da equipe 33"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(5).jpeg" alt="Foto da equipe 34"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(6).JPG" alt="Foto da equipe 35"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(6).jpeg" alt="Foto da equipe 36"></div>
+                <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ferpaula-evangelista/imagens-/main/f%20(9).jpg" alt="Foto da equipe 37"></div>
+                
+                <div class="gallery-nav">
+                    <button class="gallery-arrow prev-arrow"><i class="fas fa-chevron-left"></i></button>
+                    <button class="gallery-arrow next-arrow"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide" id="videos" data-index="6">
+        <div class="slide-content">
+            <h2>Campanhas Internacionais em <span class="accent">Ação</span></h2>
+            <p>Veja a garra e o talento que nos levaram aos pódios mundiais.</p>
+            <div class="card-container">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/shorts/P7RSbDu9QY0" title="Mundialista" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3>Desafio Mundialista 2023</h3>
+                </div>
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/shorts/eLVvP9D4ck8" title="Intercontinental" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3>Intercontinental Cup 2025</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide" id="opportunity" data-index="7">
+        <div class="slide-content">
+            <h2>A Oportunidade <span class="accent-tech">Inexplorada</span></h2>
+            <p>O mercado de futsal feminino é um dos que mais cresce, mas carece de abordagens profissionais e tecnológicas. Nós temos a chave para destravar esse potencial.</p>
+            <div class="card-container">
+                <div class="info-card"><div class="icon"><i class="fas fa-chart-line"></i></div><h3>Mercado em Ascensão</h3><p>Crescimento exponencial de audiência e praticantes, com um vácuo de marcas e soluções focadas no segmento feminino.</p></div>
+                <div class="info-card"><div class="icon"><i class="fas fa-cogs"></i></div><h3>Vantagem Competitiva</h3><p>Enquanto outros se baseiam na intuição, nosso modelo data-driven oferece uma vantagem sustentável, criando uma barreira de entrada baseada em dados exclusivos.</p></div>
+                <div class="info-card"><div class="icon"><i class="fas fa-bullseye"></i></div><h3>Pioneirismo</h3><p>Ser o primeiro a investir em uma plataforma Sport-Tech para futsal feminino nos posiciona como líderes de um nicho com potencial global.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide" id="proposal" data-index="8">
+        <div class="slide-content">
+            <h2>A Proposta: Unindo <span class="accent">Talento</span> e <span class="accent-tech">Estrutura</span></h2>
+            <p>Solicitamos um investimento estratégico para equipar o Real Colombo com a estrutura necessária para competir no mais alto nível e apoiar diretamente as atletas.</p>
+            <div class="card-container">
+                <div class="info-card"><div class="icon"><i class="fas fa-cogs"></i></div><h3>Pilar 1: Tecnologia de Elite</h3><p>Aquisição de sistemas de GPS, análise de vídeo com IA e equipamentos de recuperação para maximizar a performance.</p></div>
+                <div class="info-card"><div class="icon"><i class="fas fa-hands-helping"></i></div><h3>Pilar 2: Bolsas de Desenvolvimento</h3><p>Criação de bolsas mensais para as atletas, servindo como complemento de renda e reconhecimento pelo seu papel na inovação.</p></div>
+                <div class="info-card"><div class="icon"><i class="fas fa-plane-departure"></i></div><h3>Pilar 3: Suporte a Competições</h3><p>Recursos para diárias e passagens, garantindo a presença da equipe em eventos nacionais e internacionais decisivos.</p></div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide" id="roi" data-index="9">
+        <div class="slide-content">
+            <h2>Um Investimento de <span class="accent">Triplo Impacto</span></h2>
+            <p>Associar-se ao Real Colombo gera retornos que transcendem o balanço financeiro, construindo um legado duradouro.</p>
+            <div class="card-container">
+                <div class="info-card"><div class="icon"><i class="fas fa-dollar-sign"></i></div><h3>ROI Financeiro</h3><p>Entrada em um mercado de Sport-Tech de alta margem com múltiplas fontes de receita e um modelo escalável.</p></div>
+                <div class="info-card"><div class="icon"><i class="fas fa-rocket"></i></div><h3>ROI Estratégico</h3><p>Posicionamento pioneiro no nicho de futsal feminino, criando uma marca forte com barreira de entrada competitiva.</p></div>
+                <div class="info-card"><div class="icon"><i class="fas fa-heart"></i></div><h3>ROI de Marca</h3><p>Associação a uma história autêntica de empoderamento, impacto social e superação, gerando valor e mídia espontânea.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide" id="final-word" data-index="10">
+        <div class="slide-content">
+            <div class="final-text">
+                <span>Investimento em <span class="accent">Campeãs</span>.</span>
+                <span>Retorno em <span class="accent">Legado</span>.</span>
+                <span class="small">Uma Oportunidade para se Associar a um Fenômeno de Sucesso e Impacto Social.</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide" id="contact" data-index="11">
+        <div class="slide-content">
+             <div class="main-cta-container">
+                <a href="https://realcolombofutsalfeminino.crd.co/" target="_blank" class="contact-button main-cta"><i class="fas fa-briefcase"></i> Ver Portfólio Completo</a>
+            </div>
+            <h2>Vamos Construir Juntos o <span class="accent">Próximo Nível</span>.</h2>
+            <p>Estamos prontos para transformar nosso sucesso comprovado em uma dominação de mercado. A oportunidade está na mesa. Junte-se a nós.</p>
+            <div class="contact-buttons-container">
+                <a href="https://wa.me/5541988467002?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20proposta%20de%20investimento%20no%20time." target="_blank" class="contact-button whatsapp"><i class="fab fa-whatsapp"></i>Conversar Agora</a>
+                <a href="mailto:ferpaula.evangelista@gmail.com?subject=Proposta de Investimento Colombo-CEP" class="contact-button"><i class="fas fa-envelope"></i>Agendar por E-mail</a>
+                <a href="https://www.instagram.com/colomboaecepfutsalfeminino/" target="_blank" class="contact-button instagram"><i class="fab fa-instagram"></i>Siga-nos</a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    const setVh = () => {
+        document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+    };
+    window.addEventListener('resize', setVh);
+    window.addEventListener('orientationchange', setVh);
+    setVh();
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const container = document.getElementById('pitch-container');
+        const slides = Array.from(document.querySelectorAll('.slide'));
+        const arrowUp = document.getElementById('arrow-up');
+        const arrowDown = document.getElementById('arrow-down');
+        
+        let currentSlideIndex = 0;
+        let isWheeling = false;
+        let wheelTimeout;
+
+        const updateArrows = () => {
+            arrowUp.classList.toggle('disabled', currentSlideIndex === 0);
+            arrowDown.classList.toggle('disabled', currentSlideIndex >= slides.length - 1);
+        };
+
+        const goToSlide = (index) => {
+            if (index >= 0 && index < slides.length) {
+                slides[index].scrollIntoView({ behavior: 'smooth' });
+            }
+        };
+
+        const updateIndexOnScroll = () => {
+            const currentScrollTop = container.scrollTop;
+            let closestSlideIndex = 0;
+            slides.forEach((slide, index) => {
+                if (currentScrollTop >= slide.offsetTop - container.clientHeight / 2) {
+                    closestSlideIndex = index;
+                }
+            });
+            
+            if (currentSlideIndex !== closestSlideIndex) {
+                currentSlideIndex = closestSlideIndex;
+                updateArrows();
+            }
+        };
+        
+        let scrollTimeout;
+        container.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(updateIndexOnScroll, 100);
+        });
+
+        arrowUp.addEventListener('click', () => { if (currentSlideIndex > 0) goToSlide(currentSlideIndex - 1); });
+        arrowDown.addEventListener('click', () => { if (currentSlideIndex < slides.length - 1) goToSlide(currentSlideIndex + 1); });
+        
+        container.addEventListener('wheel', (event) => {
+            if (isWheeling) return;
+            event.preventDefault();
+            const direction = event.deltaY > 0 ? 1 : -1;
+            const nextIndex = currentSlideIndex + direction;
+            if (nextIndex >= 0 && nextIndex < slides.length) {
+                goToSlide(nextIndex);
+                isWheeling = true;
+                wheelTimeout = setTimeout(() => { isWheeling = false; }, 800);
+            }
+        }, { passive: false });
+        
+        // --- LÓGICA DA GALERIA DE FOTOS ---
+        const gallerySlides = document.querySelectorAll('.gallery-slide');
+        const prevArrow = document.querySelector('.prev-arrow');
+        const nextArrow = document.querySelector('.next-arrow');
+        
+        if (gallerySlides.length > 0) {
+            let currentImageIndex = 0;
+            let galleryInterval;
+
+            function showImage(index) {
+                gallerySlides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+            }
+
+            function nextImage() {
+                currentImageIndex = (currentImageIndex + 1) % gallerySlides.length;
+                showImage(currentImageIndex);
+            }
+
+            function prevImage() {
+                currentImageIndex = (currentImageIndex - 1 + gallerySlides.length) % gallerySlides.length;
+                showImage(currentImageIndex);
+            }
+
+            function startGallery() {
+                clearInterval(galleryInterval);
+                galleryInterval = setInterval(nextImage, 5000);
+            }
+
+            nextArrow.addEventListener('click', () => {
+                nextImage();
+                startGallery();
+            });
+
+            prevArrow.addEventListener('click', () => {
+                prevImage();
+                startGallery();
+            });
+
+            startGallery();
+        }
+
+        updateArrows();
+    });
+</script>
+
+</body>
+</html>
